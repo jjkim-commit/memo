@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub 메모장</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        #note { width: 100%; height: 300px; padding: 10px; }
+        button { margin-top: 10px; padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>나의 메모장</h1>
+    <textarea id="note" placeholder="여기에 내용을 입력하세요..."></textarea>
+    <br>
+    <button onclick="saveNote()">저장하기</button>
+    <button onclick="clearNote()">전체 삭제</button>
+
+    <script>
+        // 페이지 로드 시 저장된 메모 불러오기
+        document.getElementById('note').value = localStorage.getItem('myNote') || '';
+
+        function saveNote() {
+            const note = document.getElementById('note').value;
+            localStorage.setItem('myNote', note);
+            alert('메모가 저장되었습니다!');
+        }
+
+        function clearNote() {
+            document.getElementById('note').value = '';
+            localStorage.removeItem('myNote');
+        }
+    </script>
+</body>
+</html>
